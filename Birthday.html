@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday ❤️</title>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#ff9ecf,#ff69b4,#ff1493);
+    overflow:hidden;
+}
+
+#container{
+    text-align:center;
+}
+
+#confettiButton{
+    padding:18px 40px;
+    font-size:22px;
+    font-weight:bold;
+    border:none;
+    border-radius:50px;
+    cursor:pointer;
+    background:white;
+    color:#ff1493;
+    box-shadow:0 8px 25px rgba(0,0,0,.2);
+    transition:.3s;
+}
+
+#confettiButton:hover{
+    transform:scale(1.08);
+}
+
+.cardContainer{
+    display:none;
+    perspective:1200px;
+}
+
+.birthdayCard{
+    width:500px;
+    height:480px; 
+    position:relative;
+    transform-style:preserve-3d;
+    transition:transform 1.2s ease;
+    cursor:pointer;
+}
+
+.birthdayCard.flipped{
+    transform:rotateY(180deg);
+}
+
+.cardFront,
+.cardInside{
+    position:absolute;
+    width:100%;
+    height:100%;
+    backface-visibility:hidden;
+    border-radius:25px;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+}
+
+.cardFront{
+    background:linear-gradient(135deg,#ff1493,#ff69b4);
+    color:white;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+
+.cardFront h1{
+    font-size:42px;
+    margin-bottom:15px;
+}
+
+.cardFront p{
+    font-size:22px;
+}
+
+.cardInside{
+    background:white;
+    transform:rotateY(180deg);
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:25px;
+}
+
+.cardInside h2{
+    color:#ff1493;
+    margin-bottom:5px;
+    font-size: 26px;
+}
+
+.photo{
+    width:150px; 
+    height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid #ff69b4;
+    margin:10px 0;
+}
+
+.message{
+    font-size:16px; 
+    color:#444;
+    text-align:center;
+    line-height:1.6;
+}
+
+@media(max-width:600px){
+    .birthdayCard{
+        width:90vw;
+        height:520px; 
+    }
+
+    .cardFront h1{
+        font-size:30px;
+    }
+
+    .photo{
+        width:120px;
+        height:120px;
+    }
+
+    .message{
+        font-size:15px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div id="container">
+
+    <button id="confettiButton">
+        🎉 Celebrate!
+    </button>
+
+    <div class="cardContainer" id="cardContainer">
+        <div class="birthdayCard" id="birthdayCard">
+            <div class="cardFront">
+                <h1>🎂 HAPPY BIRTHDAY 🎂</h1>
+                <p>Click the Card 💖</p>
+            </div>
+
+            <div class="cardInside">
+                <h2>Happy Birthday!</h2>
+                
+                <!-- تم إضافة رابط صورتك المباشر الجديد هنا بنجاح -->
+                <img src="https://i.ibb.co/G3VdT9K7/photo.png" class="photo">
+
+                <!-- تهنئة الـ CFO -->
+                <p class="message">
+                    Happy Birthday to the smartest and most amazing CFO ❤️🎉<br>
+                    Wishing you a wonderful birthday and many, many more years filled with happiness, success, and good health. May you always keep smiling, and may every year bring you even greater achievements and success than the one before.<br><br>
+                    Enjoy your special day—you truly deserve all the happiness in the world! ❤️✨
+                </p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script>
+const button = document.getElementById("confettiButton");
+const cardContainer = document.getElementById("cardContainer");
+const card = document.getElementById("birthdayCard");
+
+function launchSingleCelebration() {
+    confetti({
+        particleCount: 60,
+        angle: 60,
+        spread: 60,
+        origin: { x: 0, y: 0.8 }
+    });
+
+    confetti({
+        particleCount: 60,
+        angle: 120,
+        spread: 60,
+        origin: { x: 1, y: 0.8 }
+    });
+
+    confetti({
+        particleCount: 80,
+        spread: 100,
+        origin: { x: 0.5, y: 0.5 }
+    });
+}
+
+button.addEventListener("click", () => {
+    button.style.display = "none";
+    cardContainer.style.display = "flex";
+
+    launchSingleCelebration();
+
+    setTimeout(() => {
+        card.classList.add("flipped");
+    }, 1500);
+});
+
+card.addEventListener("click", () => {
+    card.classList.toggle("flipped");
+    launchSingleCelebration();
+});
+</script>
+
+</body>
+</html>
